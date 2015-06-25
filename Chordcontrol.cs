@@ -7,7 +7,7 @@ public class Chordcontrol : MonoBehaviour {
 	public GameObject[] Chords;
 	public AudioClip[] Notes;
 	SerialPort sp = new SerialPort ("COM5", 9600); 
-	private AudioSource Notesource;
+	private AudioSource[] Notesource;
 	IEnumerator GChord(){
 		Chords [0].SetActive (false);
 		Chords [1].SetActive (false);
@@ -15,7 +15,7 @@ public class Chordcontrol : MonoBehaviour {
 		Chords [3].SetActive (false);
 		Chords [4].SetActive (false);
 		Debug.Log ("G Chord");
-		Notesource.PlayOneShot (Notes[0]);
+		Notesource [0].PlayOneShot (Notes[0]);
 		Chords [0].SetActive (true);
 		yield return new WaitForSeconds(tac);
 		Debug.Log ("Chord over");
@@ -27,7 +27,7 @@ public class Chordcontrol : MonoBehaviour {
 		Chords [3].SetActive (false);
 		Chords [4].SetActive (false);
 		Debug.Log ("E Chord");
-		Notesource.PlayOneShot (Notes[1]);
+		Notesource [1].PlayOneShot (Notes[1]);
 		Chords [1].SetActive (true);
 		yield return new WaitForSeconds(tac);
 		Debug.Log ("Chord over");
@@ -39,7 +39,7 @@ public class Chordcontrol : MonoBehaviour {
 		Chords [3].SetActive (false);
 		Chords [4].SetActive (false);
 		Debug.Log ("A Chord");
-		Notesource.PlayOneShot (Notes[2]);
+		Notesource [2].PlayOneShot (Notes[2]);
 		Chords [2].SetActive (true);
 		yield return new WaitForSeconds(tac);
 		Debug.Log ("Chord over");
@@ -51,7 +51,7 @@ public class Chordcontrol : MonoBehaviour {
 		Chords [3].SetActive (false);
 		Chords [4].SetActive (false);
 		Debug.Log ("C Chord");
-		Notesource.PlayOneShot (Notes[3]);
+		Notesource [3].PlayOneShot (Notes[3]);
 		Chords [3].SetActive (true);
 		yield return new WaitForSeconds(tac);
 		Debug.Log ("Chord over");
@@ -63,13 +63,17 @@ public class Chordcontrol : MonoBehaviour {
 		Chords [3].SetActive (false);
 		Chords [4].SetActive (false);
 		Debug.Log ("D Chord");
-		Notesource.PlayOneShot (Notes[4]);
+		Notesource [4].PlayOneShot (Notes[4]);
 		Chords [4].SetActive (true);
 		yield return new WaitForSeconds(tac);
 		Debug.Log ("Chord over");
 	}
 	void Start () {
-		Notesource = GetComponent<AudioSource>();
+		Notesource [0] = GetComponent<AudioSource>();
+		Notesource [1] = GetComponent<AudioSource>();
+		Notesource [2] = GetComponent<AudioSource>();
+		Notesource [3] = GetComponent<AudioSource>();
+		Notesource [4] = GetComponent<AudioSource>();
 		sp.Open ();
 		sp.ReadTimeout = 1;
 	}
